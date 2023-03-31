@@ -1,0 +1,48 @@
+name: Batch Pull Request For Brokers 
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'branch'
+        required: true
+        default: '1.0'
+        type: choice
+        options:
+        - '1.0'
+        - '1.1'
+        - '1.2'
+      repo:
+        description: 'repo type'
+        required: true
+        default: 'broker'
+        type: choice
+        options:
+        - broker
+        - trader
+        - task
+        - kungfu
+      version:
+        description: 'version'
+        required: true
+        default: 'alpha'
+        type: choice
+        options:
+        - alpha
+        - release
+      confirm:
+        description: 'Type y to pull request'
+        required: true
+        default: 'y'
+
+jobs:
+  pullrequest:
+    if: ${{ github.event.inputs.confirm  == 'y' }}
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Batch pr
+        uses: kungfu-trader/action-batch-pullrequest@v1.0-alpha
+        with:
+          branch: ${{ inputs.branch }}
+          repo: ${{ inputs.repo }}
+          version: ${{ inputs.version }}
+          token: ${{ secrets.KUNGFU_GITHUB_TOKEN }}

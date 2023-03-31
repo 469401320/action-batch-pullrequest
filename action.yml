@@ -1,0 +1,22 @@
+name: "Batch Pull Request"
+author: "songzhouran"
+description: "Batch Pull Request"
+inputs:
+  token:
+    description: "Github token. E.g. secrets.GITHUB_TOKEN"
+  branch:
+    description: "Choices [auto/prebuild/postbuild/verify]"
+    default: "1.0"
+  repo:
+    description: "repo"
+    default: "broker"
+  version:
+    description: "version"
+    default: "alpha"
+  apiKey:
+    descrpition: "store airtable's secret keys"
+  base:
+    description: "store which base will be used in airtable"
+runs:
+  using: "node12"
+  main: "dist/index.js"
