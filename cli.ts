@@ -1,5 +1,7 @@
+//node cli/cli.js --token <github_token> --branch 1.0 --repo kungfu --ver alpha
+
 import { batchPullRequest, type argvs } from "./lib";
-// import * as yargs from 'yargs';
+
 const yargs = require("yargs");
 const cmdArgv = yargs(process.argv.slice(2))
   .option("token", { description: "token", type: "string", default: "" })
